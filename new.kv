@@ -1,0 +1,114 @@
+<CustomFloatButton@MDFloatingActionButton>:
+    md_bg_color: "#009800"
+    elevation: 2
+    theme_text_color: "Custom"
+    text_color: "white"
+    
+<ContentListItem@OneLineIconListItem>:
+    theme_text_color: "Custom"
+    text_color: "white"
+    IconLeftWidget:
+        icon: "play"
+        theme_text_color: "Custom"
+        text_color: "#009800"
+
+<ContentList@MDList>:
+    ContentListItem:
+        text: "music file name"
+
+<AudioPlayerLayout@Screen+MDFloatLayout>:
+    md_bg_color: "#242424"
+    size_hint: 1, 1
+    pos_hint: {"top": 1}
+    MDBoxLayout:
+        padding: 36,30,36,0
+        pos_hint: {"top": 1}
+        adaptive_height: True
+        MDLabel:
+            text: "[b][size=28]Music Player[/size][/b]"
+            color: "white"
+            markup: True
+        MDWidget:
+        CustomFloatButton:
+            icon: "playlist-play"
+            on_press: root.manager.current = "content screen"
+    FitImage:
+        source: "thumbnails/thumbnail.jpg"
+        size_hint: None, None
+        width: "250dp"
+        height: "250dp"
+        radius: 20
+        pos_hint: {"center_x": .5, "center_y": .62}
+    MDLabel:
+        padding: 40
+        text: "Music Title"
+        font_style: 'H5'
+        bold: True
+        pos_hint: {"center_y": .38}
+        halign: "center"
+        color: "white"
+    MDBoxLayout:
+        padding: 50
+        pos_hint: {"center_y": .25}
+        size_hint_y: None
+        adaptive_height: True
+        MDLabel:
+            text: "0:00"
+            adaptive_size: True
+            bold: True
+            halign: "center"
+            color: "white"
+        MDSlider:
+            hint: False
+        MDLabel:
+            text: "0:00"
+            adaptive_size: True
+            bold: True
+            halign: "center"
+            color: "white"
+    MDAnchorLayout:
+        size_hint_y: None
+        height: bottom_box.height
+        MDBoxLayout:
+            adaptive_size: True
+            id: bottom_box
+            spacing: "30dp"
+            padding: 50, 50, 50, 120
+            CustomFloatButton:
+                icon: "skip-previous"
+            CustomFloatButton:
+                icon: "play"
+            CustomFloatButton:
+                icon: "skip-next"
+
+
+
+
+<ContentLayout@Screen+MDFloatLayout>:
+    md_bg_color: "#242424"
+    size_hint: 1, 1
+    pos_hint: {"top": 1}
+    MDBoxLayout:
+        padding: 36,30,36,0
+        pos_hint: {"top": 1}
+        adaptive_height: True
+        MDLabel:
+            text: "[b][size=28]Music Files[/size][/b]"
+            color: "white"
+            markup: True
+        MDWidget:
+        CustomFloatButton:
+            icon: "music"
+            on_press: root.manager.current = "audio screen"
+    MDScrollView:
+        pos_hint: {"top": .9}
+        ContentList:
+
+
+
+ScreenManager:
+    id: scr_mng
+    AudioPlayerLayout:
+        name: "audio screen"
+    ContentLayout:
+        name: "content screen"
